@@ -14,7 +14,7 @@ wines = pd.read_csv('winequality-red.csv')
 wines.columns = wines.columns.str.replace(" ", "_")
 
 # Split dataset into features and target
-X = wines.loc[:, ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'alcohol']]
+X = wines.loc[:, ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'alcohol', "residual_sugar"]]
 y = wines.loc[:, 'quality']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -28,8 +28,10 @@ X_test = scaler.transform(X_test)
 
 # Train a Decision Tree classifier
 from sklearn.tree import DecisionTreeClassifier
-model = DecisionTreeClassifier()
-model = DecisionTreeClassifier(max_depth=2)
+from sklearn.ensemble import RandomForestClassifier
+#model = DecisionTreeClassifier()
+#model = DecisionTreeClassifier(max_depth=2)
+model = RandomForestClassifier(max_depth=2, random_state=0)
 model.fit(X_train, y_train)
 
 # Compute the training and test accuracy
@@ -52,7 +54,7 @@ plt.savefig("confusion_matrix.png")
 # Plot feature importances
 # model_importances = pd.Series(importances, index=feature_names)
 
-feature_cols = ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'alcohol']
+feature_cols = ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'alcohol', "residual_sugar"]
 fig, ax = plt.subplots()
 # forest_importances.plot.bar(yerr=std, ax=ax)
 plt.bar(x=feature_cols, height=model.feature_importances_)
