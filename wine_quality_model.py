@@ -51,6 +51,7 @@ plt.savefig("confusion_matrix.png")
 # Plot feature importances
 # model_importances = pd.Series(importances, index=feature_names)
 
+feature_cols = ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'alcohol']
 fig, ax = plt.subplots()
 # forest_importances.plot.bar(yerr=std, ax=ax)
 plt.bar(x=feature_cols, height=model.feature_importances_)
