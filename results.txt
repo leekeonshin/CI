@@ -1,2 +1,2 @@
-Training accuracy: 57.77951524628616
-Test accuracy: 52.1875
+Training accuracy: 53.41543197998846
+Test accuracy: 54.769230769230774
