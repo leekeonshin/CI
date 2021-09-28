@@ -62,7 +62,7 @@ plt.savefig("feature_importance.png")
 # Plot residuals
 
 y_pred = model.predict(X_test)
-y_test1 = y_test["quality"].tolist()
+y_test1 = y_test.tolist()
 # residuals = y_test - y_pred
 residuals = [y_test1[i] - y_pred[i] for i in range(len(y_test1))]
 plt.scatter(residuals, y_pred)
