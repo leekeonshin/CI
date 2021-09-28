@@ -47,6 +47,26 @@ import matplotlib.pyplot as plt
 plot_confusion_matrix(model, X_test, y_test)
 plt.savefig("confusion_matrix.png")
 
+
+# Plot feature importances
+# model_importances = pd.Series(importances, index=feature_names)
+
+fig, ax = plt.subplots()
+# forest_importances.plot.bar(yerr=std, ax=ax)
+plt.bar(x=feature_cols, height=model.feature_importances_)
+ax.set_title("Feature importances")
+fig.tight_layout()
+plt.savefig("feature_importance.png")
+
+# Plot residuals
+
+y_pred = model.predict(X_test)
+y_test1 = y_test["quality"].tolist()
+# residuals = y_test - y_pred
+residuals = [y_test1[i] - y_pred[i] for i in range(len(y_test1))]
+plt.scatter(residuals, y_pred)
+plt.savefig("residuals.png") 
+
 # Export the model using pickle
 import pickle
 file_name = "model.pkl"
